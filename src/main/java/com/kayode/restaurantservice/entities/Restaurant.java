@@ -1,10 +1,7 @@
 package com.kayode.restaurantservice.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.id.factory.spi.GenerationTypeStrategy;
 
 import java.sql.Date;
@@ -20,6 +17,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter(AccessLevel.NONE)
     private long restaurantId;
 
     private String name;
