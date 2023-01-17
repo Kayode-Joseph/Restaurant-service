@@ -8,12 +8,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
 public class RestaurantRequest {
+
+    private MultipartFile restaurantLogo;
 
     @NotBlank(message = "Name cannot be blank")
     private String name;

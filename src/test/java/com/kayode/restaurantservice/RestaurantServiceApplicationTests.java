@@ -1,7 +1,7 @@
 package com.kayode.restaurantservice;
 
 
-import com.kayode.restaurantservice.services.RestaurantService;
+import com.kayode.restaurantservice.services.restaurant.RestaurantService;
 import com.kayode.restaurantservice.web.dtos.RestaurantRequest;
 import com.kayode.restaurantservice.web.dtos.RestaurantResponse;
 import org.junit.jupiter.api.Test;
@@ -19,6 +19,12 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -93,6 +99,16 @@ class RestaurantServiceApplicationTests {
 
 		return mockMvc.perform(MockMvcRequestBuilders.post("/api/restaurant/create")
 						.contentType(MediaType.APPLICATION_JSON).content(createRestaurantRequestAsJson));
+
+
+	}
+
+	@Test
+	void pictureToBytes() throws URISyntaxException, IOException {
+
+	var imageURL=	getClass().getClassLoader().getResource("static/images/test.png");
+
+		System.out.println(Arrays.toString(Files.readAllBytes( Path.of(imageURL.toURI()))));
 
 
 	}
