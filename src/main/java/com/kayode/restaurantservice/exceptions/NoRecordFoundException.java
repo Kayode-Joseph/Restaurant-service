@@ -1,4 +1,4 @@
-package com.kayode.restaurantservice.Exceptions;
+package com.kayode.restaurantservice.exceptions;
 
 import org.springframework.http.HttpStatus;
 

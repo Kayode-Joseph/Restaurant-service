@@ -1,5 +1,6 @@
-package com.kayode.restaurantservice.web.dtos;
+package com.kayode.restaurantservice.web.dtos.restaurant;
 
+import com.kayode.restaurantservice.web.dtos.restaurant.RestaurantRequest;
 import com.kayode.restaurantservice.web.dtos.validators.latitudeValidator.Latitude;
 import com.kayode.restaurantservice.web.dtos.validators.longitudeValidator.Longitude;
 import jakarta.validation.constraints.NotBlank;
@@ -9,11 +10,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
-public class RestaurantRequest {
+@Builder
+public class RestaurantResponse {
 
     @NotBlank(message = "Name cannot be blank")
     private String name;
@@ -24,7 +27,9 @@ public class RestaurantRequest {
     @Longitude()
     private double longitude;
 
-    @NotBlank(message = "Address cannot be blank")
     private String address;
 
+    private UUID publicId;
+
+    private String logoURL;
 }

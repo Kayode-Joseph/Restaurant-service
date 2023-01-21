@@ -13,4 +13,10 @@ public interface RestaurantRepo extends JpaRepository<Restaurant, Long> {
     select r from Restaurant r where r.publicId=?1
            """)
     Optional<Restaurant> getById(UUID id);
+
+    //come back to edit this query once authentication is set up
+    @Query("""
+    select r from Restaurant r where r.publicId=?1 and r.userId is null 
+           """)
+    Optional<Restaurant> getByIdAndUserId(String restaurantUUID, Integer userId);
 }

@@ -1,10 +1,7 @@
 package com.kayode.restaurantservice.web.controllers;
 
 
-import com.kayode.restaurantservice.Exceptions.CustomException;
-import com.kayode.restaurantservice.Exceptions.NoRecordFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+import com.kayode.restaurantservice.exceptions.CustomException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

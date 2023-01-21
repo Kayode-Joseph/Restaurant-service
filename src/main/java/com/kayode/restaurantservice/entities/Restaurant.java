@@ -17,7 +17,6 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter(AccessLevel.NONE)
     private long restaurantId;
 
     private String name;
@@ -28,9 +27,12 @@ public class Restaurant {
 
     private String address;
 
-    private UUID publicId;
+    @Column(unique = true)
+    private String publicId;
 
-    private int userId;
+    private Integer userId;
+
+    private String logoURL;
 
    @OneToMany(mappedBy = "restaurantId")
    private List<Dish> dishes;

@@ -1,14 +1,13 @@
 package com.kayode.restaurantservice;
 
 
-import com.kayode.restaurantservice.services.RestaurantService;
-import com.kayode.restaurantservice.web.dtos.RestaurantRequest;
-import com.kayode.restaurantservice.web.dtos.RestaurantResponse;
+import com.kayode.restaurantservice.services.restaurant.RestaurantService;
+import com.kayode.restaurantservice.web.dtos.restaurant.RestaurantRequest;
+import com.kayode.restaurantservice.web.dtos.restaurant.RestaurantResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
@@ -19,6 +18,9 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.nio.file.Files;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -91,10 +93,21 @@ class RestaurantServiceApplicationTests {
 
 	private ResultActions callCreateRestaurantEndpoint(String createRestaurantRequestAsJson) throws Exception {
 
-		return mockMvc.perform(MockMvcRequestBuilders.post("/api/restaurant/create")
-						.contentType(MediaType.APPLICATION_JSON).content(createRestaurantRequestAsJson));
+		File testLogoFile= new File(getClass().getClassLoader().getResource("static/images/restaurant/test.png").getFile());
+
+		byte[] testLogoBytes= Files.readAllBytes(testLogoFile.toPath());
+
+		return mockMvc.perform(MockMvcRequestBuilders.multipart("/api/restaurant/create")
+				.file("restaurantLogo",testLogoBytes)
+				.param("name", getRestaurant().getName())
+				.param("longitude", String.valueOf(getRestaurant().getLongitude()))
+				.param("latitude", String.valueOf(getRestaurant().getLongitude()))
+				.param("address", getRestaurant().getAddress())
+
+		);
 
 
 	}
+
 
 }
