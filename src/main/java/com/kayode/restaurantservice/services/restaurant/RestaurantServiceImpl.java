@@ -57,6 +57,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         List<Restaurant> restaurants = restaurantRepo.findAll();
 
         return restaurants.stream().map(Util::mapRestaurantToRestaurantResponse).collect(Collectors.toList());
+        
 
     }
 

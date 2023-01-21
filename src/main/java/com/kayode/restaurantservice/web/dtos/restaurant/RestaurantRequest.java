@@ -3,12 +3,10 @@ package com.kayode.restaurantservice.web.dtos.restaurant;
 import com.kayode.restaurantservice.web.dtos.validators.latitudeValidator.Latitude;
 import com.kayode.restaurantservice.web.dtos.validators.longitudeValidator.Longitude;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
@@ -16,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @Builder
 public class RestaurantRequest {
-
 
     private MultipartFile restaurantLogo;
 
